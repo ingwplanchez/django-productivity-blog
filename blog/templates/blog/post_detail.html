@@ -8,13 +8,23 @@
 <body>
 
     <h1>{{ post.title }}</h1>
+    <p>Publicado por: {{ post.author }} el {{ post.pub_date }}</p>
     <hr>
     <div>
         {{ post.content }}
     </div>
-    
-    <p>Publicado por: {{ post.author }} el {{ post.pub_date }}</p>
+
     <p><a href="{% url 'post_list' %}">Volver a la lista de posts</a></p>
+
+    <hr>
+    <h3>Comentarios</h3>
+    {% for comment in comments %}
+    <p><strong>{{ comment.author }}</strong> - {{ comment.pub_date }}</p>
+    <p>{{ comment.text }}</p>
+    <hr>
+    {% empty %}
+    <p>No hay comentarios aún.</p>
+    {% endfor %}
 
 </body>
 </html>
