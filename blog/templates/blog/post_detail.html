@@ -13,34 +13,36 @@
     <div>
         {{ post.content | safe }}
     </div>
-    
+
     <p><a href="{% url 'post_list' %}">Volver a la lista de posts</a></p>
-    
+
     <hr>
     <h3>Comentarios</h3>
     {% for comment in comments %}
-    <p><strong>{{ comment.author }}</strong> - {{ comment.pub_date }}</p>
-    <p>{{ comment.text }}</p>
-    <hr>
+        <p><strong>{{ comment.author }}</strong> - {{ comment.pub_date }}</p>
+        <p>{{ comment.text }}</p>
+        <hr>
     {% empty %}
-    <p>No hay comentarios aún.</p>
+        <p>No hay comentarios aún.</p>
     {% endfor %}
-    
+
     <div class="mt-4">
         <h4>Deja un comentario</h4>
         {% if error_message %}
-        <p style="color: red;">{{ error_message }}</p>
+            <p style="color: red;">{{ error_message }}</p>
         {% endif %}
         {% if user.is_authenticated %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary mt-2">Enviar Comentario</button>
-        </form>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-2">Enviar Comentario</button>
+            </form>
         {% else %}
-        <p>Por favor, <a href="/admin/login/">inicia sesión</a> para dejar un comentario.</p>
+            <p>Por favor, <a href="/admin/login/">inicia sesión</a> para dejar un comentario.</p>
         {% endif %}
     </div>
+        
+
 
 </body>
 </html>
