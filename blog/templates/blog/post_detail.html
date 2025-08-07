@@ -17,25 +17,23 @@
 <hr>
 <h3>Comentarios</h3>
 {% for comment in comments %}
-    <div class="card mb-2">
-        <div class="card-body">
-            <p class="card-text">{{ comment.text }}</p>
-            <p class="card-text"><small class="text-muted"><strong>{{ comment.author }}</strong> - {{ comment.pub_date }}</small></p>
-        </div>
-    </div>
+    <p><strong>{{ comment.author }}</strong> - {{ comment.pub_date }}</p>
+    <p>{{ comment.text }}</p>
+    <hr>
 {% empty %}
     <p>No hay comentarios aún.</p>
 {% endfor %}
 
 <div class="mt-4">
     <h4>Deja un comentario</h4>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
     {% if user.is_authenticated %}
         <form method="post">
             {% csrf_token %}
-            <div class="mb-3">
-                {{ form.text }}
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary mt-2">Enviar Comentario</button>
         </form>
     {% else %}
         <p>Por favor, <a href="/admin/login/">inicia sesión</a> para dejar un comentario.</p>
