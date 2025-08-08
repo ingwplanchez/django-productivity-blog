@@ -1,42 +1,48 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<h1 class="mb-3">{{ post.title }}</h1>
-<p class="text-muted">Publicado por: {{ post.author }} el {{ post.pub_date }}</p>
-<hr>
+<div class="mb-4" style="max-width: 60%; margin: auto;">
+    <h1 class="mb-3">{{ post.title }}</h1>
+    <p class="text-muted">Publicado por: {{ post.author }} el {{ post.pub_date }}</p>
+    <hr>
 
-{% if post.image %}
-    <img src="{{ post.image.url }}" class="img-fluid mb-4" alt="{{ post.title }}">
-{% endif %}
-<div class="mb-4">
+    {% if post.image %}
+    <div class="text-center">
+        <img src="{{ post.image.url }}" class="img-fluid mb-4" alt="{{ post.title }}">
+    </div>
+    {% endif %}
+
+    <div class="mb-4">
     {{ post.content | linebreaksbr }}
-</div>
+    </div>
 
-<a href="{% url 'post_list' %}" class="btn btn-secondary mb-4">Volver a la lista de posts</a>
+    <a href="{% url 'post_list' %}" class="btn btn-secondary mb-4">Volver a la lista de posts</a>
 
-<hr>
-<h3>Comentarios</h3>
-{% for comment in comments %}
+    <hr>
+    <h3>Comentarios</h3>
+    {% for comment in comments %}
     <p><strong>{{ comment.author }}</strong> - {{ comment.pub_date }}</p>
     <p>{{ comment.text }}</p>
     <hr>
-{% empty %}
+    {% empty %}
     <p>No hay comentarios aún.</p>
-{% endfor %}
+    {% endfor %}
 
-<div class="mt-4">
-    <h4>Deja un comentario</h4>
-    {% if error_message %}
+    <div class="mt-4">
+        <h4>Deja un comentario</h4>
+        {% if error_message %}
         <p style="color: red;">{{ error_message }}</p>
-    {% endif %}
-    {% if user.is_authenticated %}
+        {% endif %}
+        {% if user.is_authenticated %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary mt-2">Enviar Comentario</button>
         </form>
-    {% else %}
+        {% else %}
         <p>Por favor, <a href="/admin/login/">inicia sesión</a> para dejar un comentario.</p>
-    {% endif %}
+        {% endif %}
+    </div>
+
 </div>
 {% endblock %}
