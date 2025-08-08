@@ -2,16 +2,18 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor_uploader.fields import RichTextUploadingField # Importa el nuevo campo
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = RichTextUploadingField() # Cambia a RichTextUploadingField
     image = models.ImageField(upload_to='post_images/', blank=True, null=True)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
