@@ -15,6 +15,33 @@ El proyecto cuenta con las siguientes funcionalidades, construidas paso a paso p
   - **Archivos Estáticos y Multimedia:** Configuración para servir archivos estáticos (CSS) y multimedia (imágenes), con integración del framework CSS **Bootstrap** para un diseño responsivo y moderno.
   - **Editor de Texto Enriquecido:** Integración de **Django-CKEditor** en el panel de administración, permitiendo formatear el contenido de los posts con negritas, títulos y la posibilidad de insertar imágenes complementarias.
 
+-----
+## Capturas de Pantalla
+Aquí puedes ver el blog en acción, mostrando sus diferentes vistas y el panel de administración.
+
+### Vista Principal
+
+![alt text](screenshots/list_view.jpg)
+
+### Vista de Artículo 
+
+![alt text](screenshots/detail_view.jpg)
+
+### Formulario de Comentarios
+
+![alt text](screenshots/comment_form.jpg)
+
+### Panel de administración
+
+![alt text](screenshots/site_admin.jpg)
+
+### Editor de Post CKEditor
+
+![alt text](screenshots/post_editor.jpg)
+
+
+-----
+
 ## Próximos Pasos
 
 El proyecto está en constante desarrollo y se planean las siguientes mejoras:
